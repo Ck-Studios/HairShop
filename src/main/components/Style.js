@@ -18,7 +18,7 @@ export default class Style extends Component<Props> {
 
   render() {
     const {data, styleCategory} = this.state;
-    const {navigation} = this.props;
+    const {navigation, shopList} = this.props;
     return (
       <View style={{marginTop: 30}}>
         <Feed
@@ -36,12 +36,13 @@ export default class Style extends Component<Props> {
             }
           </StyleTab>
           <StyleList
-            data={data}
+            data={shopList}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({item}) =>
               <StyleItem
                 title={item.title}
+                image={item.images}
                 subtitle={item.subtitle}
               />
             }

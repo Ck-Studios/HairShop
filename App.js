@@ -11,6 +11,7 @@ import Header from "./src/common/Header";
 import DrawerMenu from './src/common/DrawerMenu';
 import {Container} from "./src/common/Theme";
 import {HeaderWrapper} from "./src/common/Theme";
+import {axiosClient} from "./src/client/AxiosClient";
 
 const {width, height} = Dimensions.get('window');
 const DRAWER_MENU_WIDTH = width * 0.75;
@@ -30,6 +31,16 @@ export default class App extends Component<Props> {
   updateMenuState = (drawerOpen) => {
     this.setState({drawerOpen});
   };
+
+  componentDidMount() {
+    const self = this;
+
+    axiosClient.get('styles')
+      .then(res => {
+        self.setState({styleShopList: res.data})
+      })
+      .catch(err => console.warn(err))
+  }
 
   render() {
     const {drawerOpen} = this.state;

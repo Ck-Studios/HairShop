@@ -7,15 +7,16 @@ import {Container, RowView} from "../../common/Theme";
 const {width, height} = Dimensions.get('window');
 
 export default function StyleList(props) {
-  const {shopList} = props;
+  const {shopList, toggleLike} = props;
   return (
     <Container>
       <ShopList
         data={shopList}
-        contentContainerStyle={{width: (width * 0.45), height: height * 0.25, margin: 4, backgroundColor: 'pink'}}
         numColumns={2}
         renderItem={({item}) =>
           <StyleItem
+            toggleLike={toggleLike}
+            id={item.id}
             title={item.title}
             subtitle={item.subtitle}
             tags={item.tags}

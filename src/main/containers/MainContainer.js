@@ -19,37 +19,42 @@ const DRAWER_MENU_WIDTH = width * 0.75;
 export default class MainContainer extends Component<Props> {
   state = {
     drawerOpen: false,
+    styleShopList: null,
   };
 
   componentDidMount() {
+    const self = this;
 
+    axiosClient.get('styles')
+      .then(res => {
+        self.setState((prev) => ({styleShopList: res.data, load: true}))
+      })
+      .catch(err => console.warn(err))
   }
-
-  toggleDrawer = () => {
-    this.setState(prev => ({
-      drawerOpen: !prev.drawerOpen
-    }));
-  };
-
-  updateMenuState = (drawerOpen) => {
-    this.setState({drawerOpen});
-  };
-
 
   render() {
     const {navigation} = this.props;
+    const {styleShopList} = this.state;
     const menu = <DrawerMenu/>;
-    return (
+    return styleShopList ?
+      (
         <ScrollContainer style={{backgroundColor: 'white',}}>
-          <MainTabs navigation={navigation}/>
-          <View style={{marginTop: 10}}>
-            <Banner/>
-          </View>
-          <Category navigation={navigation}/>
-          <Style navigation={navigation}/>
-          <Pick/>
+          <Container>
+            <MainTabs navigation={navigation}/>
+            <View style={{marginTop: 10}}>
+              <Banner/>
+            </View>
+            <Category navigation={navigation}/>
+            <Style
+              shopList={styleShopList}
+              navigation={navigation}
+            />
+            <Pick/>
+          </Container>
         </ScrollContainer>
-    )
+      )
+      :
+      <View><Text>Loading</Text></View>
   }
 }
 

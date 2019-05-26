@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, Dimensions, TouchableOpacity} from 'react-native';
+import {View, Image, StyleSheet, Text, Dimensions, TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-looped-carousel';
 import styled from 'styled-components/native';
 import {
@@ -39,15 +39,22 @@ export default class ShopDetailContainer extends Component<Props> {
   render() {
     const {navigation} = this.props;
     const {categories, indicator, currentIndex} = this.state;
-    const {title, location, type, price, shop} = navigation.getParam('props');
+    const {title, location, type, price, shop,images} = navigation.getParam('props');
 
     return (
       <ScrollContainer style={{backgroundColor: LightGrayColor}}>
         <ShopInfoContainer>
           <Carousel
-            style={{width: width, height: 200}}
+            style={{width: width, height: 300}}
             autoplay={false}
           >
+            {
+              images.map(image =>
+              <Container>
+                <Image source={{uri: image}} style={{width: '100%', height: '100%', resizeMode: 'cover'}}/>
+              </Container>
+              )
+            }
             <Container style={{backgroundColor: 'pink',}}><Text>Screen 1</Text></Container>
             <Container style={{backgroundColor: 'blue',}}><Text>Screen 2</Text></Container>
             <Container style={{backgroundColor: 'green',}}><Text>Screen 3</Text></Container>

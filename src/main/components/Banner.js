@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import {Container} from "../../common/Theme";
 
 export default class Banner extends Component<Props> {
@@ -8,7 +8,7 @@ export default class Banner extends Component<Props> {
   render() {
     return(
       <Container style={{height: 180, backgroundColor: 'red'}}>
-        <Text>Banner</Text>
+        <Image source={require('../../../assets/banner.png')} style={{width: '100%', height: '100%', resizeMode: 'cover'}}/>
       </Container>
     )
   }
