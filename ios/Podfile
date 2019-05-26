@@ -1,0 +1,38 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ReactNativeMaps' do
+# Pods for ReactNativeMaps
+pod 'GoogleMaps'
+end
+
+target 'HairShop' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for HairShop
+
+  target 'HairShop-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'HairShopTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'HairShop-tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for HairShop-tvOS
+
+  target 'HairShop-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
